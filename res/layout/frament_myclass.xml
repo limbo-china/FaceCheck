@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:background="@drawable/background_login"
+        android:layout_weight="1">
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView 
+            android:gravity="center"
+            android:textColor="#FFFFFFFF"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="我的课程"
+            android:textSize="25sp"/>
+            <ImageView
+                android:id="@+id/ivAddLesson"
+                android:layout_gravity="bottom" 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_input_add"/>
+        </LinearLayout>        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:text="当前教学周:第三周"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+      <LinearLayout
+        android:background="#ffffcccc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvMonday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周一"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvTuesday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周二"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvWednesday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周三"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvThursday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周四"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvFriday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周五"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvSaturday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周六"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvSunday" 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="周日"/>
+    </LinearLayout>
+   <ImageView
+       android:layout_marginLeft="8dp"
+        android:id="@+id/cursor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="matrix"
+        android:src="@drawable/barslide" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="7.5"
+        android:layout_gravity="center"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
+    
+		
+</LinearLayout>
