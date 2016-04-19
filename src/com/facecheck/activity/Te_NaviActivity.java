@@ -18,8 +18,8 @@ public class Te_NaviActivity extends TabActivity implements OnCheckedChangeListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.te_navi);
 		tabHost=this.getTabHost();
-		tabHost.addTab(tabHost.newTabSpec("1").setIndicator("1").setContent(new Intent(this,FaceCheckActivity.class)));
-		tabHost.addTab(tabHost.newTabSpec("2").setIndicator("2").setContent(new Intent(this,PictureActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("1").setIndicator("1").setContent(new Intent(this,Te_FaceCheckActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("2").setIndicator("2").setContent(new Intent(this,Te_InfoActivity.class)));
 
 		radioderGroup = (RadioGroup) findViewById(R.id.te_radio);
 		radioderGroup.setOnCheckedChangeListener(this);

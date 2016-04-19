@@ -16,9 +16,9 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item> 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-
+    </style> 
     <style name="mainTabs_radio">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>

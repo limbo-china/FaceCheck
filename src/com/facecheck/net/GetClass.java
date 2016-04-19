@@ -9,7 +9,7 @@ import com.facecheck.StringDefine;
 public class GetClass {
 
 	public GetClass(String userId,String password,String semester,String userIdentity,final SuccessCallback successCallback,final FailCallback failCallback){
-		new NetConnection(StringDefine.SERVER_URL, HttpMethod.POST, new NetConnection.SuccessCallback() {
+		new Connection(StringDefine.SERVER_URL, Method.POST, new Connection.SuccessCallback() {
 			
 			@Override
 			public void onSuccess(String result) {
@@ -51,7 +51,7 @@ public class GetClass {
 					}
 				}
 			}
-		}, new NetConnection.FailCallback() {
+		}, new Connection.FailCallback() {
 			
 			@Override
 			public void onFail() {

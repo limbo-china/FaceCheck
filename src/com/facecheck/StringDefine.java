@@ -45,48 +45,18 @@ public class StringDefine {
 	public static final String KEY_USER_PROFESSION = "user_profession";
 	public static final String KEY_USER_CLASS = "user_class";
 	
-	public static final String KEY_LESSON = "lesson";
 	public static final String KEY_API_KEY = "api_key";
 	public static final String KEY_API_SECRET = "api_secret";
-	public static final String API_KEY = "c86213470260c2e3031ac0ea2e596028";
-	public static final String API_SECRET = "LhUOkbR_DBu3RBhg_IF08N_Xv-oWF5d5";
 
 	public static final String IDENTITY_UNDERGRADUATE = "undergraduate";
 	public static final String IDENTITY_TEACHER = "teacher";
 
 	public static final String AC_LOGIN = "login";
 	public static final String AC_GETCLASS = "getclass";
-	public static final String AC_Check = "check";
-	// public static final int RESULT_STATUS_ERROR_PHONE_IMEI = 2; //鐢ㄦ埛鏇存崲浜嗘墜鏈�
-	// public static final int RESULT_STATUS_ERROR_INFO = 3;
-	// //鐧诲綍鏃�:鐢ㄦ埛杈撳叆鐨勬墜鏈哄彿鍜屽鍙锋湁璇垨鑰呰繕鏈敞鍐�
-	// //娉ㄥ唽鏃�:琛ㄧず瀛﹀彿鎴栬�呯數璇濆彿宸茬粡琚敞鍐岃繃
-
-	public static final int TEACHER_TAG = 1;
-	public static final int STUDENT_TAG = 0;
-
-	public static final int MALE_TAG = 1;
-	public static final int FEMALE_TAG = 0;
-
-	public static final String KEY_SEX_TAG = "sexTag";
-	public static final String KEY_ACCOUNT_TAG = "accountTag";
-	public static final String KEY_PHONE_NUMBER = "phoneNumber";
-	public static final String KEY_STUDY_NUMBER = "studyNumber";
-	public static final String KEY_PHONE_IMEI = "phoneIMEI";
-	public static final String KEY_PERSONAL_NAME = "personalName";
-	public static final String KEY_SCHOOL_NAME = "schoolName";
-	public static final String KEY_ACADEMY_NAME = "academyName";
-	public static final String KEY_ACCOUNT = "account";
-	public static final String KEY_MESSAGE = "message";
-	public static final String KEY_LESSON_NAME = "lessonName";
-	public static final String KEY_LESSON_START_TIME = "lessonStartTime";
-	public static final String KEY_LESSON_STOP_TIME = "lessonStopTime";
-	public static final String KEY_LESSON_DAY = "lessonDay";
-	public static final String KEY_LESSON_NUMBER = "lessonNumber";
-	
-	public static final String KEY_TEACHER_NAME = "teacherName";
-	public static final String KEY_LESSON_TH = "lessonTh";
-	public static final String KEY_LESSON_LOCATION = "lessonLocation";
+	public static final String AC_CHECK = "check";
+	public static final String AC_ADDCLASS= "addclass";
+	public static final String AC_ADDRecord ="addrecord";
+	public static final String AC_MYCLASS="myclass";
 
 	public static final String ACTION_RESIGTER = "resigter";
 	public static final String ACTION_GET_MESSAGE = "getMessage";

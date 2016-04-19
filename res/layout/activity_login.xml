@@ -12,10 +12,9 @@
 
     <LinearLayout
         android:id="@+id/loginPanel"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+     android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:background="@drawable/background_login_div"
         android:orientation="vertical" >
 
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Welcome"
+            android:text="登陆"
             android:textSize="25dp" />
 
         <EditText
@@ -36,8 +35,11 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/qq_edit_login"
             android:ems="10"
-            android:hint="教务系统学(工)号"
-            android:singleLine="true" />
+            android:hint="请输入学(工)号"
+            android:singleLine="true" >
+
+            <requestFocus />
+        </EditText>
 
         <EditText
             android:id="@+id/etPassword"
@@ -48,7 +50,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/qq_edit_login"
             android:ems="10"
-            android:hint="教务系统密码"
+            android:hint="请输入密码"
             android:password="true"
             android:singleLine="true" />
 

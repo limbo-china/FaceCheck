@@ -11,4 +11,6 @@
     <string name="more">更多</string>
     <string name="facecheck">人脸考勤</string>
     <string name="teinfo">信息</string>
+    <drawable name="but_normal">#DEDEDE</drawable>
+ <drawable name="but_pressed">#FF7F24</drawable>
 </resources>

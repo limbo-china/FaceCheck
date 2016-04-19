@@ -25,7 +25,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launcher_home"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -42,12 +42,15 @@
         <activity android:name="com.facecheck.activity.IQClassActivity" />
         <activity android:name="com.facecheck.activity.ImportClassInfoActivity" />
         <activity android:name="com.facecheck.activity.GetFaceActivity" />
-        <activity android:name="com.facecheck.activity.FaceCheckActivity" />
+        <activity android:name="com.facecheck.activity.Te_FaceCheckActivity" />
         <activity android:name="com.facecheck.activity.CameraActivity" />
-        <activity android:name="com.facecheck.activity.TableActivity" />
+        <activity android:name="com.facecheck.activity.St_TableActivity" />
         <activity android:name="com.facecheck.activity.St_NaviActivity" />
         <activity android:name="com.facecheck.activity.Te_NaviActivity" />
-        <activity android:name="com.facecheck.activity.PictureActivity"></activity>
+        <activity android:name="com.facecheck.activity.Te_InfoActivity" />
+        <activity android:name="com.facecheck.activity.Te_AddClassActivity" />
+        <activity android:name="com.facecheck.activity.Te_MyClassActivity" />
+        <activity android:name="com.facecheck.activity.St_PictureActivity"></activity>
         <activity android:name="com.facecheck.activity.Activity3"></activity>
     </application>
 

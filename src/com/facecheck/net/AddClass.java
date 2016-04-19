@@ -5,9 +5,9 @@ import org.json.JSONObject;
 
 import com.facecheck.StringDefine;
 
-public class Check {
+public class AddClass {
 	
-	public Check(String idNumber, String classId,final SuccessCallback successCallback,final FailCallback failCallback){
+	public AddClass(String idNumber, String classId,final SuccessCallback successCallback,final FailCallback failCallback){
 		new Connection(StringDefine.SERVER_URL,Method.POST,new Connection.SuccessCallback() {
 			public void onSuccess(String result) {
 				// TODO Auto-generated method stub
@@ -47,7 +47,7 @@ public class Check {
 					}
 					
 				}
-			},StringDefine.AC_TYPE,StringDefine.AC_CHECK,
+			},StringDefine.AC_TYPE,StringDefine.AC_ADDCLASS,
 			StringDefine.S_CLASSID,classId,
 			StringDefine.S_IDNUMBER,idNumber);
 		}
