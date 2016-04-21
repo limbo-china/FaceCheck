@@ -12,26 +12,19 @@
 	    android:background="@color/home"
 	    android:textColor="@color/yin"
 	    android:gravity="center"
-        android:text="已加入的课程" />
+        android:text="我的课程" />
  <ImageView   
             android:layout_width="fill_parent"  
             android:layout_height="3dp"  
             android:background="@color/yellow"  
             />  
     <ListView
-        android:id="@+id/myclass_listview"
+        android:id="@+id/st_myclass_listview"
         android:layout_width="match_parent"
         android:layout_height="254dp"
         android:layout_weight="0.48" 
         android:divider="@color/yellow"
             android:dividerHeight="1px">
     </ListView>
-
-    <Button
-        android:id="@+id/butaddret2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_button_div"
-        android:text="←返回" />
 
 </LinearLayout>

@@ -3,7 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+	    android:layout_weight="0.08"
+	    android:textSize="25dp"
+	    android:background="@color/home"
+	    android:textColor="@color/yin"
+	    android:gravity="center"
+        android:text="加入课程" />
 
+ <ImageView   
+            android:layout_width="fill_parent"  
+            android:layout_height="3dp"  
+            android:background="@color/yellow"  
+            />  
     <EditText
         android:id="@+id/classIdadd"
         android:layout_width="match_parent"
@@ -37,5 +51,11 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/background_button_div"
         android:text="返回" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.34" />
 
 </LinearLayout>

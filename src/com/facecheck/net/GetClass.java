@@ -1,6 +1,5 @@
 package com.facecheck.net;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,12 +19,7 @@ public class GetClass {
 					switch (obj.getInt(StringDefine.S_PERMISSION)) {
 					case StringDefine.PERMISSION_SUCCESS:
 						if(successCallback != null){
-							
-							//JSONObject objUserInfo = obj.getJSONObject("info_of_user");
-							//String info_of_classes = obj.getString(Config.KEY_INFO_OF_CLASSES);
-							JSONArray ArrayClasses = obj.getJSONArray(StringDefine.S_CLASSES);
-							//System.out.println(objClasses);
-							successCallback.onSuccess(ArrayClasses);
+							successCallback.onSuccess(obj);
 						}
 						break;
 					case StringDefine.RESULT_STATUS_SEMESTER_ERR:
@@ -68,7 +62,7 @@ public class GetClass {
 	}
 
 	public static interface SuccessCallback{
-		void onSuccess(JSONArray ArrayClasses);
+		void onSuccess(JSONObject res);
 	}
 	public static interface FailCallback{
 		void onFail(int errorStatus);

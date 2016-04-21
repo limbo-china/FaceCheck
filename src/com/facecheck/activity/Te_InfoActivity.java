@@ -24,6 +24,7 @@ public class Te_InfoActivity extends Activity {
         mylistview = (ListView)findViewById(R.id.listView1);
         list.add("我的课程");
         list.add("加入课程");
+        list.add("考勤查询");
         ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>
                            (this,android.R.layout.simple_list_item_1,list);
         mylistview.setAdapter(myArrayAdapter);
@@ -42,6 +43,11 @@ public class Te_InfoActivity extends Activity {
                 if(list.get(arg2).equals("加入课程"))
                 {
                 	Intent intent = new Intent(Te_InfoActivity.this,Te_AddClassActivity.class);
+                    startActivity(intent);
+                }
+                if(list.get(arg2).equals("考勤查询"))
+                {
+                	Intent intent = new Intent(Te_InfoActivity.this,Te_LookCheckActivity.class);
                     startActivity(intent);
                 }
             }

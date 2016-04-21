@@ -12,10 +12,10 @@ import java.util.List;
 import com.facecheck.MyClass;
 import com.facecheck.config.R;
 
-public class MyClassAdapter extends ArrayAdapter<MyClass> {
+public class St_MyClassAdapter extends ArrayAdapter<MyClass> {
 	private int reId;
 
-	public MyClassAdapter(Context context, int tvReId,List<MyClass> objects) {
+	public St_MyClassAdapter(Context context, int tvReId,List<MyClass> objects) {
 		super(context, tvReId, objects);
 		reId = tvReId;
 	}
@@ -26,9 +26,10 @@ public class MyClassAdapter extends ArrayAdapter<MyClass> {
 		View view = LayoutInflater.from(getContext()).inflate(reId, null);
 
 		TextView id = (TextView) view
-				.findViewById(R.id.myclass_id);
-		TextView name = (TextView) view.findViewById(R.id.myclass_name);
-		TextView timeLocation = (TextView) view.findViewById(R.id.myclass_timeLocation);
+				.findViewById(R.id.st_myclass_id);
+		TextView name = (TextView) view.findViewById(R.id.st_myclass_name);
+		TextView teacher = (TextView) view.findViewById(R.id.st_myclass_teacher);
+		TextView timeLocation = (TextView) view.findViewById(R.id.st_myclass_timeLocation);
 
 		id.setText(mclass.getId());
 		name.setText(mclass.getName());
@@ -37,6 +38,12 @@ public class MyClassAdapter extends ArrayAdapter<MyClass> {
 		}
 		else{
 			timeLocation.setText(mclass.getTimeLocation());
+		}
+		if(mclass.getTeacherName().equals("")){
+			teacher.setText("老师未知");
+		}
+		else{
+			teacher.setText(mclass.getTeacherName());
 		}
 		return view;
 	}

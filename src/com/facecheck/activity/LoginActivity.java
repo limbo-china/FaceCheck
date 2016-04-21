@@ -19,14 +19,15 @@ import com.facecheck.config.R;
 import com.facecheck.net.Login;
 
 public class LoginActivity extends Activity {
-	private EditText etUserId = null;
-	private EditText etPassword = null;
-	private String userIdentity = StringDefine.IDENTITY_UNDERGRADUATE;
 	private Context mContext;
-	private RadioGroup rgSwitch = null;
-	private RadioButton rbTeacher = null;
-	private CheckBox cbMemoryPassword = null;
+	private RadioGroup Switch = null;
+	private RadioButton Teacher = null;
+	private CheckBox MemoryPassword = null;
 	private int isMemory = 0;
+	private EditText UserId = null;
+	private EditText Password = null;
+	private String userIdentity = StringDefine.IDENTITY_UNDERGRADUATE;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -34,42 +35,39 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		
 		mContext = this;
-		etUserId = (EditText) findViewById(R.id.etUserId);
-		etPassword = (EditText) findViewById(R.id.etPassword);
-		rgSwitch = (RadioGroup) findViewById(R.id.rg_switch);
-		rbTeacher = (RadioButton) findViewById(R.id.rb_teacher);
-		cbMemoryPassword = (CheckBox) findViewById(R.id.cbMemoryPassword);
-		cbMemoryPassword.setChecked(true);
+		UserId = (EditText) findViewById(R.id.etUserId);
+		Password = (EditText) findViewById(R.id.etPassword);
+		Switch = (RadioGroup) findViewById(R.id.rg_switch);
+		Teacher = (RadioButton) findViewById(R.id.rb_teacher);
+		MemoryPassword = (CheckBox) findViewById(R.id.cbMemoryPassword);
+		MemoryPassword.setChecked(true);
 		
 		String mUserId = StringDefine.getCachedUserId(mContext);
 		String mPassword = StringDefine.getCachedPassword(mContext);
 		String mUserType = StringDefine.getCachedUserType(mContext);
 		int mIsMemory = StringDefine.getCachedIsMemory(mContext);
-		System.out.println("mUserId"+mUserId+mPassword+mUserType);
-		//是否存有密码帐号信息
+
 			if(mIsMemory == 1){
-			    System.out.println("memory");
-				etUserId.setText(mUserId);
-				etPassword.setText(mPassword);
+				UserId.setText(mUserId);
+				Password.setText(mPassword);
 				if(userIdentity.equals(StringDefine.IDENTITY_TEACHER)){
-					rbTeacher.setChecked(true);
+					Teacher.setChecked(true);
 				}else{
-					rbTeacher.setChecked(false);
+					Teacher.setChecked(false);
 				}
 			}
 		
 				
-		rgSwitch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			
+		Switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+	
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
-				if(checkedId == rbTeacher.getId()){
+				if(checkedId == Teacher.getId()){
 					userIdentity = StringDefine.IDENTITY_TEACHER;
 				}else{
 					userIdentity = StringDefine.IDENTITY_UNDERGRADUATE;
 				}
-				System.out.println(userIdentity);
 				
 			}
 		});
@@ -81,17 +79,14 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				if(TextUtils.isEmpty(etUserId.getText()) || TextUtils.isEmpty(etPassword.getText())){
+				if(TextUtils.isEmpty(UserId.getText()) || TextUtils.isEmpty(Password.getText())){
 					Toast.makeText(LoginActivity.this,"帐号和密码不能为空", Toast.LENGTH_LONG).show();
 					return;
 				}
 				
 				final ProgressDialog pd = ProgressDialog.show(LoginActivity.this,"连接中","连接服务器中,请稍候");
 				
-				System.out.println("etUserId:" + etUserId.getText().toString());
-				System.out.println("etPassword:" + etPassword.getText().toString());
-				System.out.println("userIdentity:" + userIdentity);
-				new Login(etUserId.getText().toString(),etPassword.getText().toString(),
+				new Login(UserId.getText().toString(),Password.getText().toString(),
 						userIdentity,new Login.SuccessCallback() {
 					
 					@Override
@@ -99,11 +94,10 @@ public class LoginActivity extends Activity {
 						// TODO Auto-generated method stub
 						pd.dismiss();
 						Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT).show();
-						if(cbMemoryPassword.isChecked()){
+						if(MemoryPassword.isChecked()){
 							isMemory = 1;
 						}
-						StringDefine.cacheUserInfo(mContext, etUserId.getText().toString(), etPassword.getText().toString(), userIdentity,isMemory);
-						System.out.println("success");
+						StringDefine.cacheUserInfo(mContext, UserId.getText().toString(), Password.getText().toString(), userIdentity,isMemory);
 						Intent intent;
 						if(userIdentity==StringDefine.IDENTITY_TEACHER)
 							intent = new Intent(LoginActivity.this,Te_NaviActivity.class);

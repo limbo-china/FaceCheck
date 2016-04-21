@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.36"
+        android:background="@color/home"
+        android:gravity="center"
+        android:text="查询考勤"
+        android:textColor="@color/yin"
+        android:textSize="23dp" />
+
+<ImageView   
+            android:layout_width="fill_parent"  
+            android:layout_height="3dp"  
+            android:background="@color/yellow"  
+            />  
+   <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <EditText
+        android:id="@+id/classIdlook"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="0.91"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="输入课程编号"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/classTimelook"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+         android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="查看第几次考勤"
+        android:singleLine="true" >
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/butlookchecked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_button_div"
+        android:text="查看已签到学生" />
+
+    <Button
+        android:id="@+id/butlookret"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.57"
+        android:background="@drawable/background_button_div"
+        android:text="返回" />
+</LinearLayout>
+
+<ImageView   
+            android:layout_width="fill_parent"  
+            android:layout_height="3dp"  
+            android:background="@color/yellow"  
+            />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal" >
+<TextView
+    android:id="@+id/name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+    android:layout_weight="0.36"
+    android:text="课程名" />
+
+<TextView
+    android:id="@+id/times"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+    android:layout_weight="0.36"
+    android:text="考勤次数" />
+</LinearLayout>
+    <TextView
+        android:id="@+id/textViewlook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.06"
+        android:text="已签到学生:"
+        android:textSize="15dp" />
+    <ImageView   
+            android:layout_width="fill_parent"  
+            android:layout_height="1dp"  
+            android:layout_marginTop="10dp"
+            android:background="@color/yellow"  
+            />
+
+     <ListView
+        android:id="@+id/lookcheck_listview"
+        android:layout_width="match_parent"
+        android:layout_height="254dp"
+        android:layout_weight="0.48" 
+        android:divider="@color/yellow"
+            android:dividerHeight="1px">
+    </ListView>
+
+</LinearLayout>

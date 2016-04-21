@@ -13,16 +13,16 @@
 
         <TextView
             
-            android:id="@+id/myclass_id"
+            android:id="@+id/stuinfo_idNumber"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="课程编号" />
+            android:text="学号" />
 
          <TextView
-             android:id="@+id/myclass_name"
+             android:id="@+id/stuinfo_name"
              android:layout_width="150dp"
              android:layout_height="wrap_content"
-             android:text="课程名" />
+             android:text="姓名" />
 
 	</LinearLayout>
 	<LinearLayout   android:layout_marginTop="10dp"
@@ -32,10 +32,17 @@
     android:orientation="horizontal" >
 
 		<TextView
-		    android:id="@+id/myclass_timeLocation"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="时间地点" />
+            
+            android:id="@+id/stuinfo_stuclass"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="班级" />
+
+         <TextView
+             android:id="@+id/stuinfo_field"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:text="专业" />
 
 	</LinearLayout>
 </LinearLayout>

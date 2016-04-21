@@ -7,7 +7,7 @@ import com.facecheck.StringDefine;
 
 public class AddRecord {
 	
-	public AddRecord(String idNumber, String classId,final SuccessCallback successCallback,final FailCallback failCallback){
+	public AddRecord(String idNumber, String classId,String classTime, final SuccessCallback successCallback,final FailCallback failCallback){
 		new Connection(StringDefine.SERVER_URL,Method.POST,new Connection.SuccessCallback() {
 			public void onSuccess(String result) {
 				// TODO Auto-generated method stub
@@ -16,7 +16,7 @@ public class AddRecord {
 					switch (res.getInt(StringDefine.S_PERMISSION)) {
 					case StringDefine.PERMISSION_SUCCESS:
 						if(successCallback != null){
-							successCallback.onSuccess();
+							successCallback.onSuccess(res);
 						}
 						break;
 					case StringDefine.PERMISSION_ERR:
@@ -49,10 +49,11 @@ public class AddRecord {
 				}
 			},StringDefine.AC_TYPE,StringDefine.AC_ADDRecord,
 			StringDefine.S_CLASSID,classId,
-			StringDefine.S_IDNUMBER,idNumber);
+			StringDefine.S_IDNUMBER,idNumber,
+			StringDefine.S_CLASSTIME,classTime);
 		}
 		public static interface SuccessCallback{
-			void onSuccess();
+			void onSuccess(JSONObject res);
 		}
 		public static interface FailCallback{
 			void onFail(int errorStatus);

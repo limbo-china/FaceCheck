@@ -7,12 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
-import android.database.Cursor;
+
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -21,7 +20,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images.ImageColumns;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -44,7 +42,6 @@ public class St_PictureActivity extends Activity {
 	private ImageView imageView = null;
 	private Bitmap imgbit = null;
 	private Button buttonGetimg =null;
-	private Button buttonDetect = null;
 	private Button buttonUploadimg=null;
 	private TextView textView = null;
 	private final int CAPTURE_IMAGE =100;
@@ -67,14 +64,111 @@ public class St_PictureActivity extends Activity {
         
         textView = (TextView)this.findViewById(R.id.textView1);
         
-        buttonDetect = (Button)this.findViewById(R.id.butdetect);
         buttonUploadimg = (Button)this.findViewById(R.id.butuploadimg);
-        buttonDetect.setVisibility(View.INVISIBLE);
         buttonUploadimg.setVisibility(View.INVISIBLE);
-        buttonDetect.setOnClickListener(new OnClickListener() {
+        
+        imageView = (ImageView)this.findViewById(R.id.imageView1);
+        imageView.setImageBitmap(imgbit);
+        
+        buttonUploadimg.setOnClickListener(new OnClickListener() {
+			
 			public void onClick(View arg0) {
-				
-				textView.setText("连接中 ...");
+				buttonUploadimg.setVisibility(View.INVISIBLE);
+				new Thread(new Runnable() {
+						public void run() {
+							//replace api_key and api_secret here (note)
+							JSONArray jsonarr = null; 
+							String faceId =null;
+							try {
+								faceId = faceJson.getJSONArray("face").getJSONObject(0).getString("face_id");
+							} catch (JSONException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							boolean exist_group = false;
+							boolean exist_person = false;
+							HttpRequests httpRequests = new HttpRequests(StringDefine.S_FACEAPIKEY, StringDefine.S_FACEAPISECRET, true, true);
+							try {
+								jsonarr =httpRequests.infoGetGroupList().getJSONArray("group");
+								for(int i=0;i<jsonarr.length();i++){
+									if(jsonarr.getJSONObject(i).getString("group_name").equals(StringDefine.S_GROUPNAME)){
+										exist_group = true;
+										break;
+									}
+								}
+								if(exist_group==false){
+									httpRequests.groupCreate(new PostParameters().setGroupName(StringDefine.S_GROUPNAME));
+								}
+								
+								jsonarr= httpRequests.infoGetPersonList(new PostParameters().setGroupName(StringDefine.S_GROUPNAME)).getJSONArray("person");
+								for(int i=0;i<jsonarr.length();i++){
+									if(jsonarr.getJSONObject(i).getString("person_name").
+											equals(userIdNumber)){
+										exist_person = true;
+										break;
+									}
+								}
+								if(exist_person==false){  
+									httpRequests.personCreate(new PostParameters().setPersonName(userIdNumber));
+									httpRequests.groupAddPerson(new PostParameters().
+											setGroupName(StringDefine.S_GROUPNAME).setPersonName(userIdNumber));
+									httpRequests.personAddFace(new PostParameters().setPersonName(userIdNumber).setFaceId(faceId));
+								}
+								else{
+									httpRequests.personAddFace(new PostParameters().setPersonName(userIdNumber).setFaceId(faceId));
+								}
+								Message message = new Message();  
+					            message.what = 1;  
+					            mHandler.sendMessage(message); 
+					            httpRequests.trainIdentify(new PostParameters().setGroupName(StringDefine.S_GROUPNAME));
+								
+							}catch (Exception e) {
+								Message message = new Message();  
+					            message.what = 2;  
+					            mHandler.sendMessage(message); 
+								e.printStackTrace();
+							} 
+						}
+				 }).start();
+			}
+		});
+    }
+    private Handler mHandler = new Handler(){  
+        
+        public void handleMessage(Message msg) {  
+            switch (msg.what) {  
+            case 1:  
+            	Toast.makeText(St_PictureActivity.this,
+						"上传图片成功", Toast.LENGTH_LONG).show();
+            	textView.setText("上传成功.");
+            	break;
+            case 2:
+            	Toast.makeText(St_PictureActivity.this,
+						"上传图片失败，请重新拍照", Toast.LENGTH_LONG).show();
+            	textView.setText("上传失败.");
+                break;  
+            }  
+        };  
+    };  
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    	super.onActivityResult(requestCode, resultCode, intent);
+    	
+    	//the image picker callback
+    	if (requestCode == CAPTURE_IMAGE) {
+    		if (intent != null) {
+    			Bundle bundle = intent.getExtras();
+    			imgbit = (Bitmap) bundle.get("data");//获取照片，转换为bit
+    			textView.setText("请识别人脸");
+    			imageView.setImageBitmap(imgbit);
+    			
+    			textView.setText("连接中 ...");
 				
 				FaceppDetect faceppDetect = new FaceppDetect();
 				faceppDetect.setDetectCallback(new DetectCallback() {
@@ -156,111 +250,6 @@ public class St_PictureActivity extends Activity {
 					}
 				});
 				faceppDetect.detect(imgbit);
-			}
-		});
-        
-        imageView = (ImageView)this.findViewById(R.id.imageView1);
-        imageView.setImageBitmap(imgbit);
-        
-        buttonUploadimg.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View arg0) {
-				buttonUploadimg.setVisibility(View.INVISIBLE);
-				new Thread(new Runnable() {
-						public void run() {
-							//replace api_key and api_secret here (note)
-							JSONArray jsonarr = null; 
-							String faceId =null;
-							try {
-								faceId = faceJson.getJSONArray("face").getJSONObject(0).getString("face_id");
-							} catch (JSONException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-							boolean exist_group = false;
-							boolean exist_person = false;
-							HttpRequests httpRequests = new HttpRequests(StringDefine.S_FACEAPIKEY, StringDefine.S_FACEAPISECRET, true, true);
-							try {
-								jsonarr =httpRequests.infoGetGroupList().getJSONArray("group");
-								for(int i=0;i<jsonarr.length();i++){
-									if(jsonarr.getJSONObject(i).getString("group_name").equals(StringDefine.S_GROUPNAME)){
-										exist_group = true;
-										break;
-									}
-								}
-								if(exist_group==false){
-									httpRequests.groupCreate(new PostParameters().setGroupName(StringDefine.S_GROUPNAME));
-								}
-								
-								jsonarr= httpRequests.infoGetPersonList(new PostParameters().setGroupName(StringDefine.S_GROUPNAME)).getJSONArray("person");
-								for(int i=0;i<jsonarr.length();i++){
-									if(jsonarr.getJSONObject(i).getString("person_name").
-											equals(userIdNumber)){
-										exist_person = true;
-										break;
-									}
-								}
-								if(exist_person==false){  
-									httpRequests.personCreate(new PostParameters().setPersonName(userIdNumber));
-									httpRequests.groupAddPerson(new PostParameters().
-											setGroupName(StringDefine.S_GROUPNAME).setPersonName(userIdNumber));
-									httpRequests.personAddFace(new PostParameters().setPersonName(userIdNumber).setFaceId(faceId));
-								}
-								else{
-									httpRequests.personAddFace(new PostParameters().setPersonName(userIdNumber).setFaceId(faceId));
-								}
-								Message message = new Message();  
-					            message.what = 1;  
-					            mHandler.sendMessage(message); 
-								
-							}catch (Exception e) {
-								Message message = new Message();  
-					            message.what = 2;  
-					            mHandler.sendMessage(message); 
-								e.printStackTrace();
-							} 
-						}
-				 }).start();
-			}
-		});
-    }
-    private Handler mHandler = new Handler(){  
-        
-        public void handleMessage(Message msg) {  
-            switch (msg.what) {  
-            case 1:  
-            	Toast.makeText(St_PictureActivity.this,
-						"上传图片成功", Toast.LENGTH_LONG).show();
-            	buttonDetect.setVisibility(View.INVISIBLE);
-            	textView.setText("上传成功.");
-            	break;
-            case 2:
-            	Toast.makeText(St_PictureActivity.this,
-						"上传图片失败，请重新拍照", Toast.LENGTH_LONG).show();
-            	buttonDetect.setVisibility(View.INVISIBLE);
-            	textView.setText("上传失败.");
-                break;  
-            }  
-        };  
-    };  
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    	super.onActivityResult(requestCode, resultCode, intent);
-    	
-    	//the image picker callback
-    	if (requestCode == CAPTURE_IMAGE) {
-    		if (intent != null) {
-    			Bundle bundle = intent.getExtras();
-    			imgbit = (Bitmap) bundle.get("data");//获取照片，转换为bit
-    			textView.setText("请识别人脸");
-    			imageView.setImageBitmap(imgbit);
-    			buttonDetect.setVisibility(View.VISIBLE);
     		}
     		else {
     			Log.d(TAG, "idButSelPic Photopicker canceled");

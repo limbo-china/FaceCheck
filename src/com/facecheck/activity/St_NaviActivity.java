@@ -20,7 +20,7 @@ public class St_NaviActivity extends TabActivity implements OnCheckedChangeListe
 		tabHost=this.getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("1").setIndicator("1").setContent(new Intent(this,St_TableActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("2").setIndicator("2").setContent(new Intent(this,St_PictureActivity.class)));
-		tabHost.addTab(tabHost.newTabSpec("3").setIndicator("3").setContent(new Intent(this,Activity3.class)));
+		tabHost.addTab(tabHost.newTabSpec("3").setIndicator("3").setContent(new Intent(this,St_MyInfoActivity.class)));
 
 		radioderGroup = (RadioGroup) findViewById(R.id.st_radio);
 		radioderGroup.setOnCheckedChangeListener(this);

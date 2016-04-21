@@ -5,11 +5,11 @@ import org.json.JSONObject;
 
 import com.facecheck.StringDefine;
 
-public class Check {
+public class LookCheck {
 	
 	JSONObject res;
 	
-	public Check(String idNumber, String classId,String classTime,final SuccessCallback successCallback,final FailCallback failCallback){
+	public LookCheck(String classId,String classTime,final SuccessCallback successCallback,final FailCallback failCallback){
 		new Connection(StringDefine.SERVER_URL,Method.POST,new Connection.SuccessCallback() {
 			public void onSuccess(String result) {
 				// TODO Auto-generated method stub
@@ -55,9 +55,8 @@ public class Check {
 					}
 					
 				}
-			},StringDefine.AC_TYPE,StringDefine.AC_CHECK,
+			},StringDefine.AC_TYPE,StringDefine.AC_LOOKCHECK,
 			StringDefine.S_CLASSID,classId,
-			StringDefine.S_IDNUMBER,idNumber,
 			StringDefine.S_CLASSTIME,classTime);
 		}
 		public static interface SuccessCallback{

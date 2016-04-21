@@ -5,16 +5,14 @@ import org.json.JSONObject;
 
 import com.facecheck.StringDefine;
 
-public class Check {
+public class MyInfo {
 	
-	JSONObject res;
-	
-	public Check(String idNumber, String classId,String classTime,final SuccessCallback successCallback,final FailCallback failCallback){
+	public MyInfo(String idNumber,final SuccessCallback successCallback,final FailCallback failCallback){
 		new Connection(StringDefine.SERVER_URL,Method.POST,new Connection.SuccessCallback() {
 			public void onSuccess(String result) {
 				// TODO Auto-generated method stub
 				try {
-					res = new JSONObject(result);
+					JSONObject res = new JSONObject(result);
 					switch (res.getInt(StringDefine.S_PERMISSION)) {
 					case StringDefine.PERMISSION_SUCCESS:
 						if(successCallback != null){
@@ -23,17 +21,11 @@ public class Check {
 						break;
 					case StringDefine.PERMISSION_ERR:
 						if(failCallback != null){
-							failCallback.onFail(StringDefine.PERMISSION_ERR,res);
+							failCallback.onFail(StringDefine.PERMISSION_ERR);
 						}
-						break;
-					case StringDefine.PERMISSION_TIMEERR:
-						if(failCallback != null){
-							failCallback.onFail(StringDefine.PERMISSION_TIMEERR,res);
-						}
-						break;
 					default:
 						if(failCallback != null){
-							failCallback.onFail(StringDefine.PERMISSION_FAIL,res);
+							failCallback.onFail(StringDefine.PERMISSION_FAIL);
 						}
 						break;
 					}
@@ -41,7 +33,7 @@ public class Check {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					if(failCallback != null){
-						failCallback.onFail(StringDefine.PERMISSION_FAIL,res);
+						failCallback.onFail(StringDefine.PERMISSION_FAIL);
 					}
 				}
 			}
@@ -51,19 +43,17 @@ public class Check {
 				public void onFail() {
 					// TODO Auto-generated method stub
 					if(failCallback != null){
-						failCallback.onFail(StringDefine.PERMISSION_FAIL,res);
+						failCallback.onFail(StringDefine.PERMISSION_FAIL);
 					}
 					
 				}
-			},StringDefine.AC_TYPE,StringDefine.AC_CHECK,
-			StringDefine.S_CLASSID,classId,
-			StringDefine.S_IDNUMBER,idNumber,
-			StringDefine.S_CLASSTIME,classTime);
+			},StringDefine.AC_TYPE,StringDefine.AC_MYINFO,
+			StringDefine.S_IDNUMBER,idNumber);
 		}
 		public static interface SuccessCallback{
 			void onSuccess(JSONObject res);
 		}
 		public static interface FailCallback{
-			void onFail(int errorStatus,JSONObject res);
+			void onFail(int errorStatus);
 		}
 }

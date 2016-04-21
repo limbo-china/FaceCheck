@@ -38,20 +38,17 @@
             </intent-filter>
         </activity>
         <activity android:name="com.facecheck.activity.LoginActivity" />
-        <activity android:name="com.facecheck.activity.HomeActivity" />
-        <activity android:name="com.facecheck.activity.IQClassActivity" />
-        <activity android:name="com.facecheck.activity.ImportClassInfoActivity" />
-        <activity android:name="com.facecheck.activity.GetFaceActivity" />
         <activity android:name="com.facecheck.activity.Te_FaceCheckActivity" />
-        <activity android:name="com.facecheck.activity.CameraActivity" />
         <activity android:name="com.facecheck.activity.St_TableActivity" />
         <activity android:name="com.facecheck.activity.St_NaviActivity" />
         <activity android:name="com.facecheck.activity.Te_NaviActivity" />
         <activity android:name="com.facecheck.activity.Te_InfoActivity" />
         <activity android:name="com.facecheck.activity.Te_AddClassActivity" />
         <activity android:name="com.facecheck.activity.Te_MyClassActivity" />
+        <activity android:name="com.facecheck.activity.St_MyInfoActivity" />
+        <activity android:name="com.facecheck.activity.Te_LookCheckActivity" />
         <activity android:name="com.facecheck.activity.St_PictureActivity"></activity>
-        <activity android:name="com.facecheck.activity.Activity3"></activity>
+        <activity android:name="com.facecheck.activity.St_InfoActivity"></activity>
     </application>
 
 </manifest>
