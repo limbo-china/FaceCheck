@@ -415,9 +415,9 @@ public class Te_FaceCheckActivity extends Activity {
 					Te_FaceCheckActivity.this.findViewById(R.id.butCheck).setEnabled(true);
 					break;
 	            case 9:
-	            	Toast.makeText(Te_FaceCheckActivity.this,
-							"识别成功:" + pidNumber+",未签到成功，请检查网络",
-							Toast.LENGTH_SHORT).show();
+//	            	Toast.makeText(Te_FaceCheckActivity.this,
+//							"识别成功:" + pidNumber+",未签到成功，请检查网络",
+//							Toast.LENGTH_SHORT).show();
 	            	Te_FaceCheckActivity.this.findViewById(R.id.butCheck).setEnabled(true);
 	            	break;
 	            case 10:
